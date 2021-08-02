@@ -4,3 +4,15 @@
 
 layout: home
 ---
+
+# Title
+
+Hello everyone, this is a page of my blog. 
+
+```c++
+for (int i = 0; i < 10; i++){
+    printf("%d\n", i);
+}
+```
+
+
