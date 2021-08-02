@@ -9,10 +9,10 @@ layout: home
 
 Hello everyone, this is a page of my blog. 
 
-```c++
-for (int i = 0; i < 10; i++){
-    printf("%d\n", i);
-}
+```python
+for c in 'Hello world':
+	print(c, end='')
+print()
 ```
 
 
