@@ -1,0 +1,747 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Lee">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="周四实验课遇到的高频编程问题，简单汇总了一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++助教问题汇总1">
+<meta property="og:url" content="http://example.com/2022/10/01/cpp_tutor_1/index.html">
+<meta property="og:site_name" content="Lee&#39;s blog">
+<meta property="og:description" content="周四实验课遇到的高频编程问题，简单汇总了一下。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/index_imgs/cpp_tutor_1.png">
+<meta property="article:published_time" content="2022-10-01T01:11:42.000Z">
+<meta property="article:modified_time" content="2022-10-08T02:11:59.625Z">
+<meta property="article:author" content="Lee">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/index_imgs/cpp_tutor_1.png">
+  
+  
+  
+  <title>C++助教问题汇总1 - Lee&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Lee</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/index_imgs/cpp_tutor_1.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">C++助教问题汇总1</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-01 09:11" pubdate>
+          2022年10月1日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          49 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C++助教问题汇总1</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>周四实验课遇到的高频编程问题，简单汇总了一下。</p>
+<span id="more"></span>
+
+<h2 id="如何进行断点调试"><a href="#如何进行断点调试" class="headerlink" title="如何进行断点调试"></a>如何进行断点调试</h2><blockquote>
+<p>程序不动了是迭代次数太多了吗?</p>
+</blockquote>
+<p>遇到这种情况先考虑是不是死循环了。<br>检查你的循环跳出条件，打断点，监视那些关键变量的变化是否符合预期。</p>
+<p><img src="/2022/10/01/cpp_tutor_1/answer13.png" srcset="/img/loading.gif" lazyload alt="断点调试是你强大的工具"></p>
+<p>程序出现运行时Bug（和令代码无法通过编译的Bug相区分）时，常用的<strong>调试手段</strong>有两种。</p>
+<p>第一种是 <strong>打日志(log)</strong> 。</p>
+<p><img src="/2022/10/01/cpp_tutor_1/5.gif" srcset="/img/loading.gif" lazyload alt="直接把关键变量的值打印出来"></p>
+<p>第二种是 <strong>断点(breakpoint)调试</strong> 。</p>
+<p>首先在想要停下的行打上断点，这样调试运行时到此处会自动停下。</p>
+<p><img src="/2022/10/01/cpp_tutor_1/1.gif" srcset="/img/loading.gif" lazyload alt="在该行打上断点"></p>
+<p>编译选项要选Debug，如果处在Release状态下运行，断点调试将被忽略。</p>
+<p>点击“本地Windows调试器”开始调试。运行后程序将停在第一个断点处，黄色箭头（红色断点的上面）指示当前程序所执行到的位置。黄色箭头位于第7行，表示前面的都执行过一遍了，而当前所在行（第7行）还未执行。</p>
+<p><img src="/2022/10/01/cpp_tutor_1/2.gif" srcset="/img/loading.gif" lazyload alt="开始调试"></p>
+<p>调试中断时，鼠标放在变量上面能显示它当前值，或者看下方的“局部变量”表也行。因为第7行还未执行，此时变量<code>i</code>的值为0。</p>
+<p>点工具栏上面的“逐语句(F11)”，可以让程序往前执行一行。边上的“逐过程(F10)”其实也行，它们的区别在于遇到对函数的调用时，是跳进去继续追踪，还是等它跳出来再追踪。<br>连续点击“逐语句(F11)”，令程序连续执行好几步，这个过程中你可以观察变量i的值的变化情况。</p>
+<p><img src="/2022/10/01/cpp_tutor_1/3.gif" srcset="/img/loading.gif" lazyload alt="单步执行"></p>
+<p>逐语句运行时，每走一行，就停下来给你观察现场，并等待你决定接下来做什么。</p>
+<p>把断点去掉以后点“继续”，程序就会继续不停地运行，也就是死循环，因为没有输出所以看起来就是黑窗口上只有光标在闪。</p>
+<p>不想调试了就点那个方形的“停止调试”，程序就将结束。</p>
+<p><img src="/2022/10/01/cpp_tutor_1/4.gif" srcset="/img/loading.gif" lazyload alt="结束调试"></p>
+<h2 id="inf，NaN是什么意思"><a href="#inf，NaN是什么意思" class="headerlink" title="inf，NaN是什么意思"></a>inf，NaN是什么意思</h2><p>inf，NaN是浮点数(float，double)数据类型中非常特殊的两个取值。</p>
+<p>inf是无穷大(infinity)的缩写，对一个正数除0.0就会得到inf，对负数除0.0会得到负的inf，或者当试图用double存储一个超过其表示范围的数，比如说<code>1e99999</code>，也会导致它变成inf) </p>
+<p>NaN是非数字(Not A Number)的缩写，对负数开平方，对负数取对数，0.0除以0.0，0.0乘inf， inf除以inf等错误都会得到NaN</p>
+<p>当你的浮点运算产生上述不合法运算时，程序不会直接报错，而是使你的运算结果变为这种特殊值。这种特殊值会在运算过程中不断传递，污染后续运算 (NaN加减乘除任何数还是NaN)。</p>
+<p>当打印这两种特殊的数值时，控制台(console)会显示<code>inf</code>，<code>-nan(ind)</code>，如果你使用的是Visual Studio。或者你使用的是Dev C++等基于g++编译器的IDE，则显示为<code>inf</code>，<code>nan</code>。这只是显示方式上的区别! </p>
+<p>示例代码如下: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cmath&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">double</span> x = <span class="hljs-number">1.0</span>;<br>    <span class="hljs-type">double</span> zero = <span class="hljs-number">0.0</span>;<br><br>    cout &lt;&lt; (x / zero) &lt;&lt; endl;    <span class="hljs-comment">// inf</span><br>    cout &lt;&lt; (-x / zero) &lt;&lt; endl;   <span class="hljs-comment">// -inf</span><br><br>    cout &lt;&lt; (<span class="hljs-built_in">sqrt</span>(-x)) &lt;&lt; endl;    <span class="hljs-comment">// nan</span><br>    cout &lt;&lt; (<span class="hljs-built_in">log</span>(-x)) &lt;&lt; endl;     <span class="hljs-comment">// nan</span><br>    cout &lt;&lt; (zero / zero) &lt;&lt; endl; <span class="hljs-comment">// nan</span><br><br>    <span class="hljs-type">double</span> inf = x / zero;         <span class="hljs-comment">// nan</span><br><br>    cout &lt;&lt; (zero / zero) &lt;&lt; endl; <span class="hljs-comment">// nan</span><br>    cout &lt;&lt; (zero * inf) &lt;&lt; endl;  <span class="hljs-comment">// nan</span><br>    cout &lt;&lt; (inf / inf) &lt;&lt; endl;   <span class="hljs-comment">// nan</span><br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2022/10/01/cpp_tutor_1/answer14.png" srcset="/img/loading.gif" lazyload alt="Visual Studio运行结果"></p>
+<h2 id="x-y不是x的y次方吗"><a href="#x-y不是x的y次方吗" class="headerlink" title="x^y不是x的y次方吗"></a>x^y不是x的y次方吗</h2><p>在C++里不是。</p>
+<p>C++ 的<code>^</code>运算符不是次幂运算符，这是数学符号习惯带来的第一个常见误会，下面的这个示例代码可以最直接地证明这一点。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> x = <span class="hljs-number">-1</span>;<br>    <span class="hljs-type">int</span> y = <span class="hljs-number">2</span>;<br><br>    cout &lt;&lt; (x ^ y) &lt;&lt; endl; <span class="hljs-comment">// 3, not 1</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>尽管代码可以通过编译并正常运行，但<code>^</code>在C++中是“异或运算符”，属于位运算符的一种(详细可参考<a target="_blank" rel="noopener" href="https://www.runoob.com/cplusplus/cpp-operators.html">这篇博客</a>)。C++不存在次幂运算符，不过你可以调用cmath库中的<code>pow()</code>指数函数来做到这一点。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cmath&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> x = <span class="hljs-number">-1</span>;<br>    <span class="hljs-type">int</span> y = <span class="hljs-number">2</span>;<br><br>    cout &lt;&lt; <span class="hljs-built_in">pow</span>(x, y) &lt;&lt; endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="单独cpp文件不能编译运行吗"><a href="#单独cpp文件不能编译运行吗" class="headerlink" title="单独cpp文件不能编译运行吗"></a>单独cpp文件不能编译运行吗</h2><blockquote>
+<p>为什么Visual Studio打开单独cpp文件不能运行，但交作业只需单独cpp文件？</p>
+</blockquote>
+<p>这个问题解释起来有些复杂……<br>一言以蔽之，Visual Studio试图让“多文件联合编译”这个问题变得简单，但反而令“单文件编译”变得繁琐。</p>
+<h3 id="多文件联合编译是C-的常态"><a href="#多文件联合编译是C-的常态" class="headerlink" title="多文件联合编译是C++的常态"></a>多文件联合编译是C++的常态</h3><p>尽管刚开始这门课的时候，大家编写的C++程序只放在一个文件里，但在工程上，一个完整的C++程序项目，代码分散地放在数百个文件里是非常正常的事情。</p>
+<p>这是我大三时编译原理实践的放C++代码的目录结构。编译时，需要将所有这些文件里的代码合并到一起编译，才能产生一个程序。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">sly<br>├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">CMakeLists</span>.</span></span>txt<br>├── <span class="hljs-keyword">include</span><br>│     └── sly<br>│         ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Action</span>.</span></span>h<br>│         ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">AnnotatedParseTree</span>.</span></span>h<br>│         ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">AttrDict</span>.</span></span>h<br>│         ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ContextFreeGrammar</span>.</span></span>h<br>│         ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">FaModel</span>.</span></span>h<br>│         ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">FileAnalyzer</span>.</span></span>h<br>│         ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">LrParser</span>.</span></span>h<br>│         ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Production</span>.</span></span>h<br>│         ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">RegEx</span>.</span></span>h<br>│         ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">SeuLex</span>.</span></span>h<br>│         ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">SeuYacc</span>.</span></span>h<br>│         ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Stream2TokenPipe</span>.</span></span>h<br>│         ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">TableGenerateMethod</span>.</span></span>h<br>│         ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">TableGenerateMethodImpl</span>.</span></span>h<br>│         ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Token</span>.</span></span>h<br>│         ├── def.h<br>│         ├── sly.h<br>│         └── utils.h<br>└── src<br>    ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Action</span>.</span></span>cpp<br>    ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">AnnotatedParseTree</span>.</span></span>cpp<br>    ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">AttrDict</span>.</span></span>cpp<br>    ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ContextFreeGrammar</span>.</span></span>cpp<br>    ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">FaModel</span>.</span></span>cpp<br>    ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">LrParser</span>.</span></span>cpp<br>    ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Production</span>.</span></span>cpp<br>    ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">RegEx</span>.</span></span>cpp<br>    ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">SeuLex</span>.</span></span>cpp<br>    ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">SeuYacc</span>.</span></span>cpp<br>    ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Stream2TokenPipe</span>.</span></span>cpp<br>    ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">TableGenerateMethod</span>.</span></span>cpp<br>    ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">TableGenerateMethodImpl</span>.</span></span>cpp<br>    ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Token</span>.</span></span>cpp<br>    ├── sly.cpp<br>    └── utils.cpp<br></code></pre></td></tr></table></figure>
+
+<p>你肯定会想到，为了让编译器知道哪些文件需要参与编译，当然要有个地方存储这样一个索引。对于Visual Studio来说，你所新建的这个“项目”(Project)就主要做了这件事。<br>正是因为“项目”索引了该工程所涉及的所有代码文件，才使得Visual Studio得以提供跨文件的代码智能提示功能(intellisense)，一键的“编译并运行”功能，智能跳转功能以及许许多多便捷功能，使得它荣获“宇宙第一IDE”之美称。</p>
+<p>在业界，大部分时候一个单独的cpp文件都是不完整的(你的程序必须包含一个且最多一个<code>main()</code>才能编译运行)，所以Visual Studio被设计成了，在任何时候都需要<strong>先有一个项目</strong>(其中指明了存在哪些代码文件)才能编译运行。哪怕你的确只有一个cpp文件，你也需要先建立一个项目，再一步步正确地把代码文件添加进去。</p>
+<p>对于使用Dev C++的同学，自然不会被这个问题困扰，因为和Visual Studio<strong>默认多文件联合编译</strong>相反，Dev C++<strong>默认进行单文件编译</strong>。你打开的是哪个文件，就编译运行的是哪个文件。如果只是经常写一些单文件的C++代码，那么无需每次都繁琐地建立工程文件，无疑是Dev C++的一大优势。</p>
+<blockquote>
+<p>我还是要提醒一句，Visual Studio的编译器(msvc)和Dev C++的编译器(g++)的表现是<strong>不完全一样</strong>的，尤其是对变量未赋初值的处理方式是不同的。曾经就有同学习惯了g++贴心的变量初值自动置零，而忘记手动赋初值，最后在考场上被msvc狠狠制裁，丢了好几分。</p>
+</blockquote>
+<h3 id="构建系统-build-system-不取决于打开了哪些文件"><a href="#构建系统-build-system-不取决于打开了哪些文件" class="headerlink" title="构建系统(build system)不取决于打开了哪些文件"></a>构建系统(build system)不取决于打开了哪些文件</h3><p>Visual Studio是一款IDE(Integrated Development Environment, 集成开发环境)，这意味着它集成了C++的构建系统(也就是你点击“编译”时所运行的系统)，能从代码文件生成可执行程序。而构建系统的基础，则在于如何找到生成最终程序所需的各个源代码文件。<br>构建系统也会随着你添加、删除<strong>项目中的代码文件</strong>而需要动态地变化。</p>
+<p>但是什么叫做“项目中的代码文件”呢，是看它是否出现在了编辑器(也就是屏幕占比最大的中间那块编辑区域)里吗？不是的，对于Visual Studio来说，在“解决方案资源管理器”里看到的树状结构才是它认为的“项目中的代码文件”。</p>
+<p><img src="/2022/10/01/cpp_tutor_1/cpp_tutor_11.png" srcset="/img/loading.gif" lazyload alt="“解决方案资源管理器”中，引用、外部依赖项、头文件、源文件下面的文件，都参与构建"></p>
+<p>当你点击“编译并运行”时，你在编译的不是面前的这个代码文件，而是<strong>这个项目</strong>。<br>你面前的这个代码文件，不一定在当前项目里。同时，这个项目也不一定只包括了你面前的代码文件。<br>要想知道项目到底包含了哪些文件，一切都以<strong>“解决方案资源管理器”里的树状结构</strong>为准。</p>
+<p>总之，Visual Studio所做的并不是“把打开的代码文件一起联合编译”，而是“按照项目索引的代码文件进行联合编译”。你爱打开几个文件打开几个文件，构建系统都不会变，除非你更改“解决方案资源管理器”里的文件结构。</p>
+<p><img src="/2022/10/01/cpp_tutor_1/answer17.png" srcset="/img/loading.gif" lazyload alt="“解决方案资源管理器”中可以看到, 当前打开的AttrDict.cpp并不在该项目中，编译运行并不会带上它"></p>
+<h3 id="单独打开cpp文件的迷惑之处"><a href="#单独打开cpp文件的迷惑之处" class="headerlink" title="单独打开cpp文件的迷惑之处"></a>单独打开cpp文件的迷惑之处</h3><p>搞清楚上面那点，其实就足够了，下面的有点偏吐槽向。</p>
+<p>在Visual Studio的设想下，开发者可以在一个项目内，对每个代码文件进行编辑，修改后编译并运行，一切都是如此美好。</p>
+<p>然而有些迷惑人的地方在于，Visual Studio又占据了系统中cpp文件的默认打开方式。当你双击一个cpp文件时，这个cpp文件中的代码会弹出在Visual Studio里。此时你能看到这些代码的语法高亮，能够编辑修改它们，并且这个选项卡看起来和其他的没有什么区别。</p>
+<p><img src="/2022/10/01/cpp_tutor_1/answer15.png" srcset="/img/loading.gif" lazyload alt="安装完Visual Studio后cpp文件的默认打开方式通常就变成了Visual Studio"></p>
+<p><img src="/2022/10/01/cpp_tutor_1/cpp_tutor_10.png" srcset="/img/loading.gif" lazyload alt="最前面这个AttrDict.cpp看起来很好，它并不在当前项目里，你看得出来吗(看不出来)"></p>
+<p>按理说，我们只关心自己项目里的代码文件，既然当前打开的这个代码文件不属于我的项目，那按理说应该进入一个“临时浏览/编辑”模式，在显示方式上和项目内的代码文件做明显区分，方便我意识到它不在我项目内才对。</p>
+<p>然而Visual Studio并没有这么做！哈哈！全都长得一模一样！</p>
+<p>更本质的原因是，Visual Studio作为一款全能型的IDE，既包揽了编辑器的功能，又承接了维护构建系统的功能，但却只有一套IDE的界面。<br>当开发者打开项目内文件并编辑时，不仅需要语法高亮，修改了代码文件，同时也对构建系统产生影响，此时Visual Studio是作为IDE在工作。<br>但当开发者编辑项目外文件时，只是需要语法高亮，修改了代码文件，但不对构建系统产生影响，此时Visual Studio仅作为编辑器(editor)工作，这时界面上所有构建系统相关的按钮都变成了干扰视听的混淆项。</p>
+<p>我认为规避这一问题的最好方法，就是始终从项目中打开cpp文件，而不通过cpp文件进入Visual Studio，并且将cpp文件的默认打开方式绑定到真正的编辑器上，比如notepad++，VS Code或者Sublime之类。</p>
+<h3 id="C-构建系统的原理"><a href="#C-构建系统的原理" class="headerlink" title="C++构建系统的原理"></a>C++构建系统的原理</h3><p>当然，我的这些解释有点太过拘泥于IDE的特性，而不是在聊C++本身了。如果你的好奇心依然未被满足，想搞明白关于C++单文件/ 多文件编译的更本质一些的原理，我建议你了解一下g++，也就是从命令行编译运行C++的流程。</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/389406095">g++是干什么用的 学C++一定要用这个么?  - 知乎</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cs.fsu.edu/~myers/howto/g++compiling.txt">Compiling C++ programs with g++</a></p>
+<p>兴许你会开始对makefile和Cmake感兴趣。</p>
+<p><img src="/2022/10/01/cpp_tutor_1/answer11.png" srcset="/img/loading.gif" lazyload alt="Dev C++中编译时使用的g++命令及参数"></p>
+<p><img src="/2022/10/01/cpp_tutor_1/answer12.png" srcset="/img/loading.gif" lazyload alt="Visual Studio中使用的cl命令及参数"></p>
+<h2 id="C-逗号相关问题"><a href="#C-逗号相关问题" class="headerlink" title="C++逗号相关问题"></a>C++逗号相关问题</h2><p>我的评价是水很深。</p>
+<h3 id="逗号不是逻辑上的“并且”"><a href="#逗号不是逻辑上的“并且”" class="headerlink" title="逗号不是逻辑上的“并且”"></a>逗号不是逻辑上的“并且”</h3><p>把逗号当作逻辑上的“并且”(and)是数学符号习惯带来的第二个常见误会，下面是一个错误的例子: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">if</span> (x &gt; <span class="hljs-number">0</span>, x &lt; <span class="hljs-number">10</span>) &#123;<br>    <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>正确的做法是使用<a target="_blank" rel="noopener" href="https://www.runoob.com/cplusplus/cpp-operators.html">逻辑运算符</a><code>&amp;&amp;</code>。</p>
+<h3 id="逗号间隔的变量声明初始化是独立赋值"><a href="#逗号间隔的变量声明初始化是独立赋值" class="headerlink" title="逗号间隔的变量声明初始化是独立赋值"></a>逗号间隔的变量声明初始化是独立赋值</h3><p>逗号还有一个常见误解是用在变量声明里. </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-type">int</span> x, y, z;<br></code></pre></td></tr></table></figure>
+
+<p>这固然没什么问题，但如果还要赋初值的话。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-type">int</span> x, y, z = <span class="hljs-number">10</span>;<br></code></pre></td></tr></table></figure>
+
+<p>请记住此时<code>x</code>和<code>y</code>并没有变成10，上述代码等价于</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-type">int</span> x;<br><span class="hljs-type">int</span> y;<br><span class="hljs-type">int</span> z = <span class="hljs-number">10</span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="逗号运算符通常属于奇技淫巧"><a href="#逗号运算符通常属于奇技淫巧" class="headerlink" title="逗号运算符通常属于奇技淫巧"></a>逗号运算符通常属于奇技淫巧</h3><p>还有一种是作为<a target="_blank" rel="noopener" href="https://www.runoob.com/cplusplus/cpp-comma-operator.html">逗号运算符</a>使用，也称“顺序求值运算符”，用于将表达式“串联”起来，返回最后一个表达式的值。<br>常见于算法竞赛不择手段的压缩行数。</p>
+<p>包括但不限于以下用法: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) a += <span class="hljs-number">1</span>, b += <span class="hljs-number">2</span>, c += <span class="hljs-number">3</span>;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-type">int</span> a;<br><span class="hljs-keyword">while</span> (cin &gt;&gt; a, a != <span class="hljs-number">0</span>) &#123;<br>    <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>前者是一种畸形的、邪恶的、错误的美学追求，后者有一定的实用性但需要你把握得住。 </p>
+<p>如果你觉得你把握得住，试试看下面几个例子能不能迷倒你。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C++">a, b, c = <span class="hljs-number">0</span>;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstdio&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> x;<br>    <span class="hljs-type">int</span> result;<br><br>    result = <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x), x * x;<br>    cout &lt;&lt; result &lt;&lt; endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>感谢阅读！<br>封面来自电影《飞驰人生》截图。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C-%E5%8A%A9%E6%95%99%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" class="category-chain-item">C++助教问题汇总</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C-C/">#C/C++</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C++助教问题汇总1</div>
+      <div>http://example.com/2022/10/01/cpp_tutor_1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Lee</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/08/cpp_tutor_2/" title="C++助教问题汇总2">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++助教问题汇总2</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/08/cpp_tutor_0/" title="C++助教问题汇总0">
+                        <span class="hidden-mobile">C++助教问题汇总0</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
