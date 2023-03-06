@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/index_imgs/optimization_1.jpg">
 <meta property="article:published_time" content="2023-03-05T23:30:19.000Z">
-<meta property="article:modified_time" content="2023-03-05T23:54:41.505Z">
+<meta property="article:modified_time" content="2023-03-06T00:03:49.736Z">
 <meta property="article:author" content="Lee">
 <meta property="article:tag" content="Optimization">
 <meta name="twitter:card" content="summary_large_image">
@@ -232,7 +232,7 @@
         
         
         
-          65 分钟
+          66 分钟
         
       </span>
     
@@ -380,16 +380,16 @@
 <li>$Z \leftarrow \arg \min \ell(Z)$</li>
 <li>$E \leftarrow \arg \min \ell(E)$</li>
 <li>$J \leftarrow \arg \min \ell(J)$</li>
-<li>$U_1 \leftarrow AZ+E-X$</li>
-<li>$U_2 \leftarrow J-Z$</li>
+<li>$U_1 \leftarrow U_1 + (AZ+E-X)$</li>
+<li>$U_2 \leftarrow U_2 + (J-Z)$</li>
 </ol>
 <p>每个公式都能得到闭式解，稍微推一下就能得到如下内容</p>
 <ol>
 <li>$Z \leftarrow \bigl( A^TA+I \bigr)^{-1} \bigl( A^T(X-E-U_1)+J+U_2 \bigr)$</li>
 <li>$E \leftarrow \mathcal{S}_{\lambda/\rho}(X-AZ-U_1)$</li>
 <li>$J \leftarrow \mathcal{D}_{\lambda/\rho}(Z-U_2)$</li>
-<li>$U_1 \leftarrow AZ+E-X$</li>
-<li>$U_2 \leftarrow J-Z$</li>
+<li>$U_1 \leftarrow U_1 + (AZ+E-X)$</li>
+<li>$U_2 \leftarrow U_2 + (J-Z)$</li>
 </ol>
 <p>就这么迭代吧！</p>
 <p>附：参考代码（matlab）</p>
