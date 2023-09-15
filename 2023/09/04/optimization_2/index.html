@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/index_imgs/optimization_2.jpg">
 <meta property="article:published_time" content="2023-09-04T07:47:06.000Z">
-<meta property="article:modified_time" content="2023-09-15T16:47:29.113Z">
+<meta property="article:modified_time" content="2023-09-15T17:09:13.210Z">
 <meta property="article:author" content="Lee++">
 <meta property="article:tag" content="Optimization">
 <meta name="twitter:card" content="summary_large_image">
@@ -305,7 +305,7 @@
 <p>为了处理正空间约束，可以采用梯度投影法 (Gradient Projection Method). </p>
 <h2 id="Rank-SVM"><a href="#Rank-SVM" class="headerlink" title="Rank-SVM"></a>Rank-SVM</h2><h3 id="问题定义-1"><a href="#问题定义-1" class="headerlink" title="问题定义"></a>问题定义</h3><p>原论文 <sup><a href="#ref1">[1]</a></sup> <sup><a href="#ref2">[2]</a></sup> 中对该问题的定义如下</p>
 <p>问题定义为</p>
-<p>$$<br>\begin{equation}<br>\begin{aligned}<br>    \min_{W} \quad &amp;<br>        \frac{1}{2} \|W\|^2_F +<br>        \sum_{i=1}^{n} \lambda_i<br>            \sum_{p \in \mathcal{Y}_i} \sum_{q \in \bar{\mathcal{Y}}_i} \xi_{ipq} + \\<br>    s.t. \quad &amp;<br>        x_i^T(w_p - w_q) \geq 1 - \xi_{ipq},<br>            \quad (p,q) \in \mathcal{Y}_i \times \bar{\mathcal{Y}}_i \\<br>    \quad &amp;<br>        \xi_{ipq} \geq 0<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>$$<br>\begin{equation}<br>\begin{aligned}<br>    \min_{W} \quad &amp;<br>        \frac{1}{2} \|W\|^2_F +<br>        \sum_{i=1}^{n} \lambda_i<br>            \sum_{p \in \mathcal{Y}_i} \sum_{q \in \bar{\mathcal{Y}}_i} \xi_{ipq} \\<br>    s.t. \quad &amp;<br>        x_i^T(w_p - w_q) \geq 1 - \xi_{ipq},<br>            \quad (p,q) \in \mathcal{Y}_i \times \bar{\mathcal{Y}}_i \\<br>    \quad &amp;<br>        \xi_{ipq} \geq 0<br>\end{aligned}<br>\end{equation}<br>$$</p>
 <p>其中, $\lambda_i = \lambda_{ipq} = \frac{C}{|\mathcal{Y}_i||\bar{\mathcal{Y}}_i|}$. </p>
 <h3 id="对偶问题"><a href="#对偶问题" class="headerlink" title="对偶问题"></a>对偶问题</h3><p>为简便起见，我们约定几个下表字母.<br>当 $i$ 作为下标时，始终表示 $i \in \{1, \dots, n\}$,<br>以此类推,<br>$j \in \{1, \dots, m\}$,<br>$k \in \{1, \dots, q\}$,<br>$p \in \mathcal{Y}_i$,<br>$q \in \bar{\mathcal{Y}}_i$.</p>
 <p>尽管这样可以获得叙述上的方便，但我们还是要时刻<strong>注意 $p,q$ 的取值依赖于 $i$</strong>. </p>
