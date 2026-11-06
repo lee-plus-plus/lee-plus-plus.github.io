@@ -7,8 +7,8 @@ window.ACADEMIC_DATA = {
     "scholar": "https://scholar.google.com/citations?hl=zh-CN&user=F9LMMAUAAAAJ",
     "github": "https://github.com/lee-plus-plus",
     "advisorUrl": "https://jyh-learning.github.io/",
-    "avatar": "head_transparent.png",
-    "avatarAlt": "head2_transparent.png",
+    "avatar": "head_transparent.webp",
+    "avatarAlt": "head2_transparent.webp",
     "updated": "2026-11",
     "advisorLabel": {
       "en": "Prof. Yuheng Jia",

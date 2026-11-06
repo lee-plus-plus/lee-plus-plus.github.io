@@ -80,7 +80,7 @@
   function renderPortrait() {
     const image = alternatePortrait ? profile.avatarAlt : profile.avatar;
     return `<button class="portrait" type="button" tabindex="-1" aria-label="${labels[lang].swapPortrait}: ${portraitMode()}" aria-pressed="${alternatePortrait}">
-      <img class="avatar" src="assets/${escapeHtml(image)}" alt="${escapeHtml(lang === 'zh' ? profile.nameZh : profile.name)}" width="1086" height="1448" draggable="false">
+      <img class="avatar" src="assets/${escapeHtml(image)}" alt="${escapeHtml(lang === 'zh' ? profile.nameZh : profile.name)}" width="444" height="592" draggable="false">
     </button>`;
   }
 
