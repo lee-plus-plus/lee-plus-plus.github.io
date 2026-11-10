@@ -155,7 +155,7 @@
       </section>
       <section id="service" aria-labelledby="service-title">
         ${renderHeading('service-title', text.service)}
-        <p class="placeholder-copy">${escapeHtml(service[lang])}</p>
+        <ul class="service-list">${service[lang].map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
       </section>
     </div>
     <footer class="updated-note">Updated <time datetime="${escapeHtml(profile.updated)}">${escapeHtml(profile.updated.replace('-', '.'))}</time></footer>`;

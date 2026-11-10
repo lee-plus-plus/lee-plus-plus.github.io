@@ -47,8 +47,18 @@ window.ACADEMIC_DATA = {
     }
   ],
   "service": {
-    "en": "Academic service information will be added soon.",
-    "zh": "学术服务信息稍后补充。"
+    "en": [
+      "Reviewer, International Conference on Learning Representations (ICLR).",
+      "Reviewer, Conference on Neural Information Processing Systems (NeurIPS).",
+      "Reviewer, Transactions on Machine Learning Research (TMLR).",
+      "Reviewer, ACM Transactions on Multimedia Computing, Communications, and Applications (ACM TOMM)."
+    ],
+    "zh": [
+      "审稿人：International Conference on Learning Representations (ICLR)。",
+      "审稿人：Conference on Neural Information Processing Systems (NeurIPS)。",
+      "审稿人：Transactions on Machine Learning Research (TMLR)。",
+      "审稿人：ACM Transactions on Multimedia Computing, Communications, and Applications (ACM TOMM)。"
+    ]
   },
   "papers": [
     {

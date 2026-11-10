@@ -567,9 +567,13 @@ sup {
   padding-top: 2px;
 }
 
-.placeholder-copy {
-  color: var(--muted);
+.service-list {
   margin: 10px 0 0;
+  padding-left: 20px;
+}
+
+.service-list li+li {
+  margin-top: 7px;
 }
 
 /* Alternative sidebar layout */
